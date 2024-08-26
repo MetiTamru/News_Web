@@ -1,0 +1,107 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Added for consistent box sizing */
+  background-color: transparent; 
+}
+
+body {
+  font-family: Arial, sans-serif; /* Added for a consistent font across the site */
+}
+
+.navbar {
+  background-color: rgba(255, 255, 255, 0.8); /* Increased opacity for better visibility */
+  backdrop-filter: blur(10px); 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: sticky; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10; 
+  padding: 0.5rem 1rem; /* Adjusted padding for better spacing */
+  display: flex; /* Added for flex layout */
+  justify-content: space-between; /* Added for spacing between elements */
+  align-items: center; /* Added for vertical alignment */
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+}
+
+.navbar a:hover {
+  color: #F2B616; /* Changed hover color to match the nav-link underline */
+}
+
+.nav-links {
+  list-style: none; 
+  margin: 0;
+  padding: 0;
+  display: flex; /* Added for horizontal alignment of links */
+}
+
+.nav-links li {
+  margin-right: 20px;
+}
+
+.nav-link {
+  text-decoration: none;
+  position: relative;
+  padding: 5px;
+  transition: color 0.3s ease, padding 0.3s ease; /* Adjusted transition properties */
+}
+
+.nav-link::after {
+  content: '';
+  display: block;
+  height: 2px;
+  background-color: #F2B616;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* Dropdown */
+.dropdown ul {
+  background: gray;
+  padding: 0;
+  list-style: none;
+}
+
+/* Submenu */
+ul.submenu {
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+  background-color: white; /* Added background color for visibility */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .nav-links {
+    display: block; /* Stacked layout for small screens */
+  }
+
+  .nav-links li {
+    margin-right: 0;
+    margin-bottom: 10px; /* Spacing between links */
+  }
+
+  .dropdown ul {
+    background: white; /* Ensure dropdown background is visible on small screens */
+    width: 100%; /* Full width dropdown */
+  }
+}
