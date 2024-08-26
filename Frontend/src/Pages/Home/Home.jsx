@@ -10,10 +10,15 @@ import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import africa from '../../assets/africa.jpeg'
+import footerBg from "../../assets/background.jpg"
 
 import { faSearch, faDatabase, faChartLine, faChalkboardTeacher, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'; // Import FontAwesome icons
 import { Link } from 'react-router-dom';
 import latestNewsImage from '../../assets/background.jpg'; // Update with the path to your image
+import { faFacebookF, faTwitter, faLinkedinIn, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { faEnvelope, faPhone, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
+import { faCogs, faTint, faLeaf } from '@fortawesome/free-solid-svg-icons'; // Import relevant icons
+
 
 const newsVariants = {
   hidden: { opacity: 0, y: 50 },
@@ -130,16 +135,16 @@ function Home({ homeData, setTextcount, textCount, setPlayStatus, playStatus }) 
             {/* Enhanced HaqCheck UI with Scroll Animation */}
             <motion.div
                 ref={ref}
-                className="bottom-content md:mt-20 mt-28 w-full p-10"
+                className="bottom-content mb-32 md:mt-44 mt-28 w-full p-10"
                 variants={containerVariants}
                 initial="hidden"
                 animate={controls}
             >
-                <p className="text-3xl font-semibold mb-6 text-center">Focus Areas</p>
+                <p className="text-3xl md:mb-20 font-semibold mb-6 text-center">Focus Areas</p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     {/* HaqCheck Card */}
                     <motion.div
-                        className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 flex flex-col items-center justify-between h-72 hover:shadow-2xl transition-shadow duration-300"
+                        className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 flex flex-col items-center justify-between h-60 hover:shadow-2xl transition-shadow duration-300"
                         variants={cardVariants}
                     >
                         <FontAwesomeIcon icon={faSearch} className="text-4xl text-[#F2B616]  mb-4" />
@@ -147,14 +152,12 @@ function Home({ homeData, setTextcount, textCount, setPlayStatus, playStatus }) 
                             <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">HaqCheck</h3>
                             <p className="text-gray-600 dark:text-gray-300 mb-4">A multilingual fact-checking initiative to ensure information accuracy.</p>
                         </div>
-                        <a href="#" className='bg-[#F2B616] text-white py-2 px-6 rounded-full inline-flex items-center hover:bg-[#d9a312] transition-colors duration-300'>
-                            Learn more <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
-                        </a>
+                       
                     </motion.div>
 
                     {/* Data Lab Card */}
                     <motion.div
-                        className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 flex flex-col items-center justify-between h-72 hover:shadow-2xl transition-shadow duration-300"
+                        className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 flex flex-col items-center justify-between h-60 hover:shadow-2xl transition-shadow duration-300"
                         variants={cardVariants}
                     >
                         <FontAwesomeIcon icon={faDatabase} className="text-4xl text-[#F2B616]  mb-4" />
@@ -162,14 +165,12 @@ function Home({ homeData, setTextcount, textCount, setPlayStatus, playStatus }) 
                             <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Data Lab</h3>
                             <p className="text-gray-600 dark:text-gray-300 mb-4">Providing insightful data analysis for informed decision-making.</p>
                         </div>
-                        <a href="#" className='bg-[#F2B616] text-white py-2 px-6 rounded-full inline-flex items-center hover:bg-[#d9a312] transition-colors duration-300'>
-                            Learn more <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
-                        </a>
+                        
                     </motion.div>
 
                     {/* Information Research Card */}
                     <motion.div
-                        className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 flex flex-col items-center justify-between h-72 hover:shadow-2xl transition-shadow duration-300"
+                        className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 flex flex-col items-center justify-between h-60 hover:shadow-2xl transition-shadow duration-300"
                         variants={cardVariants}
                     >
                         <FontAwesomeIcon icon={faChartLine} className="text-4xl text-[#F2B616]  mb-4" />
@@ -177,14 +178,12 @@ function Home({ homeData, setTextcount, textCount, setPlayStatus, playStatus }) 
                             <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Information Research</h3>
                             <p className="text-gray-600 dark:text-gray-300 mb-4">Conducting thorough research to support reliable information dissemination.</p>
                         </div>
-                        <a href="#" className='bg-[#F2B616] text-white py-2 px-6 rounded-full inline-flex items-center hover:bg-[#d9a312] transition-colors duration-300'>
-                            Learn more <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
-                        </a>
+                       
                     </motion.div>
 
                     {/* Training Center Card */}
                     <motion.div
-                        className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 flex flex-col items-center justify-between h-72 hover:shadow-2xl transition-shadow duration-300"
+                        className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 flex flex-col items-center justify-between h-60 hover:shadow-2xl transition-shadow duration-300"
                         variants={cardVariants}
                     >
                         <FontAwesomeIcon icon={faChalkboardTeacher} className="text-4xl text-[#F2B616] mb-4" />
@@ -192,14 +191,12 @@ function Home({ homeData, setTextcount, textCount, setPlayStatus, playStatus }) 
                             <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Training Center - Media</h3>
                             <p className="text-gray-600 dark:text-gray-300 mb-4">Offering training programs to enhance media literacy and skills.</p>
                         </div>
-                        <a href="#" className='bg-[#F2B616] text-white py-2 px-6 rounded-full inline-flex items-center hover:bg-[#d9a312] transition-colors duration-300'>
-                            Learn more <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
-                        </a>
+                       
                     </motion.div>
                 </div>
             </motion.div>
             <motion.div
-            className="flex flex-col md:flex-row items-center md:items-start bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 md:p-8 gap-8 md:gap-12"
+            className="flex flex-col md:flex-row items-center md:items-start  shadow-lg rounded-lg p-6 md:p-8 gap-8 md:gap-12 "
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -215,7 +212,7 @@ function Home({ homeData, setTextcount, textCount, setPlayStatus, playStatus }) 
                 />
             </div>
 
-            <div className="flex-1 bg-gray-900 text-white py-10 px-6 md:px-12">
+            <div className="flex-1 dark:bg-black text-white py-10 px-6 md:px-12">
                 {/* About Us Section */}
                 <div className="text-start mb-12 px-4 md:px-8 lg:px-12">
         {/* Title Section */}
@@ -238,8 +235,8 @@ function Home({ homeData, setTextcount, textCount, setPlayStatus, playStatus }) 
                 <p
                     className={`cursor-pointer py-2 px-4 rounded-lg transition-all duration-300 
                                 ${activeTab === 'coreMission' ? 
-                                  'text-white   border-1 border-[#F2B616] shadow-lg shadow-[#F2B616] hover:shadow-[#F2B616]' : 
-                                  'bg-transparent text-gray-300 border border-gray-300'}`}
+                                  'dark:text-white text-black  border-1 border-[#F2B616] shadow-lg shadow-[#F2B616] hover:shadow-lg' : 
+                                  'bg-transparent dark:text-gray-300 text-black border dark:border-gray-300  border-black hover:border-[#F2B616] hover:text-[#F2B616] hover:shadow-md'}`}
                     onClick={() => handleTabClick('coreMission')}
                 >
                     Core Mission
@@ -249,8 +246,8 @@ function Home({ homeData, setTextcount, textCount, setPlayStatus, playStatus }) 
                 <p
                     className={`cursor-pointer py-2 px-4 rounded-lg transition-all duration-300 
                                 ${activeTab === 'capacityBuilding' ? 
-                                  ' text-white border-1 border-[#F2B616] shadow-lg shadow-[#F2B616] hover:shadow-[#F2B616]' : 
-                                  'bg-transparent text-gray-300 border border-gray-300'}`}
+                                 'dark:text-white text-black  border-1 border-[#F2B616] shadow-lg shadow-[#F2B616] hover:shadow-lg' : 
+                                  'bg-transparent dark:text-gray-300 text-black border dark:border-gray-300  border-black hover:border-[#F2B616] hover:text-[#F2B616] hover:shadow-md'}`}
                     onClick={() => handleTabClick('capacityBuilding')}
                 >
                     Capacity-Building Initiatives
@@ -260,8 +257,8 @@ function Home({ homeData, setTextcount, textCount, setPlayStatus, playStatus }) 
                 <p
                     className={`cursor-pointer py-2 px-4 rounded-lg transition-all duration-300 
                                 ${activeTab === 'haqCheck' ? 
-                                  ' text-white border-1 border-[#F2B616] shadow-lg shadow-[#F2B616] hover:shadow-[#F2B616]' : 
-                                  'bg-transparent text-gray-300 border border-gray-300'}`}
+                                 'dark:text-white text-black  border-1 border-[#F2B616] shadow-lg shadow-[#F2B616] hover:shadow-lg' : 
+                                  'bg-transparent dark:text-gray-300 text-black border dark:border-gray-300  border-black hover:border-[#F2B616] hover:text-[#F2B616] hover:shadow-md'}`}
                     onClick={() => handleTabClick('haqCheck')}
                 >
                     HaqCheck
@@ -297,17 +294,11 @@ function Home({ homeData, setTextcount, textCount, setPlayStatus, playStatus }) 
                 initial="hidden"
                 animate={activeTab === 'haqCheck' ? 'visible' : 'hidden'}
             >
-                <div className="md:flex-row items-center md:items-start bg-gray-800 rounded-lg p-6 md:p-8 gap-8">
-                    <div className="flex-shrink-0 mb-5">
-                        <img
-                            src={HaqCheck}
-                            alt="HaqCheck"
-                            className="w-full h-56   object-cover rounded-lg shadow-md"
-                        />
-                    </div>
+                <div className="md:flex-row ml-5 items-center md:items-start rounded-lg p-6 md:p-8 gap-8">
+                   
                     <div className="flex-1">
-                        <h2 className="text-2xl  font-semibold text-[#F2B616] mb-4">HaqCheck</h2>
-                        <p className="text-md text-gray-300">
+                        <h2 className="text-2xl   font-semibold text-[#F2B616] mb-4">HaqCheck</h2>
+                        <p className="text-md text-gray-800 dark:text-gray-300">
                             HaqCheck is a local and multilingual fact-checking initiative focused on ensuring information accuracy across various media platforms. Our goal is to enhance public trust in media through rigorous verification processes and transparent reporting.
                         </p>
                             <div className="explore rounded-full w-48  mt-10 items-center ">
@@ -332,55 +323,109 @@ function Home({ homeData, setTextcount, textCount, setPlayStatus, playStatus }) 
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
           {/* Image Section */}
-          <div className="flex-shrink-0 w-full md:w-1/2">
-            <img
-              src={latestNewsImage}
-              alt="Latest News"
-              className="w-full h-auto object-cover rounded-lg shadow-lg"
-            />
-          </div>
-
-          {/* Content Section */}
-          <div className="flex-1 text-center md:text-left">
-            <h1 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800 dark:text-white">
-              Our Latest News and Updates
-            </h1>
-            <p className="text-lg mb-6 text-gray-600 dark:text-gray-300">
-              Get caught up with the latest company message and news!
-            </p>
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-              <h2 className="text-2xl font-semibold text-gray-800 dark:text-yellow-400 mb-2">
-                Measuring Government Responsiveness in Ethiopia: Implications for Countering Disinformation
-              </h2>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">
-                Posted on September 23, 2023
-              </p>
-              <a
-                href="https://informafrica.net/wp-content/uploads/2023/09/Measuring-Government-Offices-Responsiveness-and-its-Implication-in-Countering-Disinformation-7.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block px-4 py-2 bg-yellow-500 text-white font-semibold rounded-lg hover:bg-yellow-600 transition duration-300"
-              >
-                Listen to the Message
-              </a>
-            </div>
-          </div>
+         
         </motion.div>
       </div>
     </section>
-
-            </div>
-          
-                   
-         
-           
-        
-      
-      
-    
-       
+<FooterSection/>
+            </div>   
       
     );
 }
+
+const FooterSection = () => (
+    <footer className="bg-gray-900 pl-5 md:pl-20 pr-20 text-white py-12 mt-20"
+    style={{
+        backgroundImage: `url(${footerBg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat', // Optional: Prevents the image from repeating
+      }}>
+    <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 px-4 md:px-0">
+      
+      {/* About Section */}
+        <div className="col-span-1">
+    <h3 className="text-xl font-semibold mb-4">About Inform Africa</h3>
+    <p className="text-gray-400">
+        FactCheck News is dedicated to providing accurate and reliable news by thoroughly fact-checking every story we publish. Our mission is to combat misinformation and ensure that our readers are informed with verified and trustworthy information. We strive to uphold the highest standards of journalism to support a well-informed public.
+    </p>
+    </div>
+
+
+      {/* Quick Links */}
+      <div className="col-span-1">
+        <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
+        <ul className="text-gray-400 space-y-2">
+          <li><a href="/about-us" className="hover:text-[#F2B616]">About Us</a></li>
+          <li><a href="/services" className="hover:text-[#F2B616]">Our Services</a></li>
+          <li><a href="/services" className="hover:text-[#F2B616]">Projects</a></li>
+          <li><a href="/contact-us" className="hover:text-[#F2B616]">Contact Us</a></li>
+        </ul>
+      </div>
+
+      {/* Contact Information */}
+      <div className="col-span-1">
+        <h3 className="text-xl font-semibold mb-4">Contact Us</h3>
+        <ul className="text-gray-400 space-y-2">
+          <li className="flex items-center">
+            <FontAwesomeIcon icon={faMapMarkerAlt} className="text-[#F2B616] mr-3" />
+            Dilla, Ethiopia
+          </li>
+          <li className="flex items-center">
+            <FontAwesomeIcon icon={faPhone} className="text-[#F2B616] mr-3" />
+            +251 95 223 5222
+          </li>
+          <li className="flex items-center">
+            <FontAwesomeIcon icon={faEnvelope} className="text-[#F2B616] mr-3" />
+            https://t.me/Degi2121
+          </li>
+        </ul>
+      </div>
+
+      {/* Newsletter Signup */}
+      <div className="col-span-1">
+        <h3 className="text-xl font-semibold mb-4">Get in touch with us</h3>
+        <p className="text-gray-400 mb-4">Get the latest news and updates on new post.</p>
+        <form className="flex flex-col">
+          <input
+            type="email"
+            placeholder="Enter your email"
+            className="p-2 rounded mb-4 text-gray-900"
+          />
+          <button className="bg-[#F2B616] text-black py-2 px-4 rounded hover:bg-[#fad15f] transition-colors">
+           <Link to={"https://t.me/Degi2121"}> Connect</Link>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    {/* Bottom Section */}
+    <div className="container mx-auto mt-10 border-t border-gray-700 pt-6">
+      <div className="flex flex-col md:flex-row justify-between items-center">
+        
+        {/* Social Media Links */}
+        <div className="mb-4 md:mb-0">
+          <a href="#" className="text-[#F2B616] mr-4 hover:text-white">
+            <FontAwesomeIcon icon={faFacebookF} />
+          </a>
+          <a href="#" className="text-[#F2B616] mr-4 hover:text-white">
+            <FontAwesomeIcon icon={faTwitter} />
+          </a>
+          <a href="#" className="text-[#F2B616] mr-4 hover:text-white">
+            <FontAwesomeIcon icon={faLinkedinIn} />
+          </a>
+          <a href="#" className="text-[#F2B616] hover:text-white">
+            <FontAwesomeIcon icon={faInstagram} />
+          </a>
+        </div>
+
+        {/* Copyright Notice */}
+        <p className="text-gray-400 text-sm">
+          &copy; {new Date().getFullYear()} © 2024. Inform Africa. All Rights Reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+  );
 
 export default Home;
