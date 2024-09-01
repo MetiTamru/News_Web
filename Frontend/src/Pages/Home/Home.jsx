@@ -10,20 +10,167 @@ import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import africa from '../../assets/africa.jpeg'
-import footerBg from "../../assets/background.jpg"
+import newsBg from "../../assets/africa.jpeg"
+import cipesa from "../../assets/cipesa1.png"
+import fojo from "../../assets/fojo.jpeg"
+import bbc from "../../assets/bbc.png"
 
+import adiszaeybe from "../../assets/adiszeybe.jfif"
+import oslomet from "../../assets/oslomet.jpg"
+import meedan from "../../assets/Meedan.png"
+import unesco from "../../assets/unesco2.jpg"
+import africachek from "../../assets/africacheack.jfif"
+import OSIEA from "../../assets/OSIEA.png"
+import freeunlimited from "../../assets/freepress.jpg"
 import { faSearch, faDatabase, faChartLine, faChalkboardTeacher, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'; // Import FontAwesome icons
 import { Link } from 'react-router-dom';
 import latestNewsImage from '../../assets/background.jpg'; // Update with the path to your image
-import { faFacebookF, faTwitter, faLinkedinIn, faInstagram } from '@fortawesome/free-brands-svg-icons';
-import { faEnvelope, faPhone, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
-import { faCogs, faTint, faLeaf } from '@fortawesome/free-solid-svg-icons'; // Import relevant icons
 
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import Footer from '../../Components/Footer';
+
+
+const position = [9.0105, 38.7636];
 
 const newsVariants = {
   hidden: { opacity: 0, y: 50 },
   visible: { opacity: 1, y: 0 },
 };
+
+const newsArticles = [
+    {
+        id: 1,
+        title: "Breaking News: Major Event Unfolds",
+        date: "August 26, 2024",
+        description: "In a major event today, something significant happened. Read more to find out the details and implications.",
+        image: newsBg, // Replace with actual image URLs
+    },
+    {
+        id: 2,
+        title: "Technology: New Advancements in AI",
+        date: "August 25, 2024",
+        description: "AI technology continues to advance at a rapid pace. Discover the latest developments in the field of artificial intelligence.",
+        image: HaqCheck,
+    },
+    {
+        id: 3,
+        title: "Technology: New Advancements in AI",
+        date: "August 25, 2024",
+        description: "AI technology continues to advance at a rapid pace. Discover the latest developments in the field of artificial intelligence.",
+        image: newsBg,
+    },
+    // Add more articles as needed
+];
+
+const slideInVariants = {
+    hidden: { opacity: 0, x: -50 },
+    visible: { opacity: 1, x: 0 },
+};
+
+// Custom Previous Arrow Component
+const CustomPrevArrow = (props) => (
+    <div
+        className="slick-prev absolute top-1/2 -left-10 transform -translate-y-1/2 bg-[#ef9505] text-white w-12 h-12 flex items-center justify-center rounded-full cursor-pointer shadow-lg hover:bg-[#c97e05] transition-colors duration-300"
+        onClick={props.onClick}
+    >
+        <FontAwesomeIcon icon={faArrowLeft} />
+    </div>
+);
+
+// Custom Next Arrow Component
+const CustomNextArrow = (props) => (
+    <div
+        className="slick-next absolute top-1/2 -right-10 transform -translate-y-1/2 bg-[#ef9505] text-white w-12 h-12 flex items-center justify-center rounded-full cursor-pointer shadow-lg hover:bg-[#c97e05] transition-colors duration-300"
+        onClick={props.onClick}
+    >
+        <FontAwesomeIcon icon={faArrowRight} />
+    </div>
+);
+
+export { CustomPrevArrow, CustomNextArrow };
+
+
+// Custom Previous Arrow Component
+const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    prevArrow: <CustomPrevArrow />,
+    nextArrow: <CustomNextArrow />,
+};
+
+
+const partnersData = [
+  {
+    name: "Cipesa",
+    logo: cipesa,
+    link: "/about"
+  },
+  {
+    name: "Arfica Check",
+    logo: africachek,
+    link: "/about"
+  },
+  {
+    name: "Adis Zeybe",
+    logo: adiszaeybe,
+    link: "/about"
+
+  },
+  {
+    name: "Oslomet",
+    logo: oslomet,
+    link: "/about"
+
+  },
+  {
+    name: "Meedan",
+    logo: meedan,
+    link: "/about"
+
+  },
+  {
+    name: "Unesco",
+    logo: unesco,
+    link: "/about"
+
+  },
+  {
+    name: "Osiea",
+    logo: OSIEA,
+    link: "/about"
+
+  },
+  {
+    name: "Free Press Unlimited",
+    logo: freeunlimited,
+    link: "/about"
+
+  },
+  {
+    name: "BBC",
+    logo: bbc,
+    link: "/about"
+  },
+  {
+    name: "Fojo",
+    logo: fojo,
+    link: "/about"
+
+  },
+];
+
+
+const location = "Gabon St. near Meskel Flower, Woreda 03, Kirkos Sub City, Addis Ababa, Ethiopia";
+const encodedLocation = encodeURIComponent(location);
+
+
 function Home({ homeData, setTextcount, textCount, setPlayStatus, playStatus }) {
     const handleTextCountChange = (newCount) => {
         setTextcount(newCount);
@@ -96,12 +243,14 @@ function Home({ homeData, setTextcount, textCount, setPlayStatus, playStatus }) 
             }
         }
     };
+ 
     
 
     return (
-        <div className='home relative h-full flex flex-col justify-center items-center md:items-start'>
+      <div className='home relative h-full flex flex-col justify-center items-center md:items-start overflow-hidden'>
+
             <div className={`text-content md:ml-32 text-center flex flex-col gap-7 md:text-start ${playStatus ? 'home-texts' : 'paused'}`}>
-                <p className='home-text text-4xl md:text-8xl md:mt-10 '>
+                <p className='home-text md:pt-28 text-4xl md:text-6xl md:mt-10 '>
                     {homeData.text1} <span className='text-[#F2B616] text-center'>{homeData.text2}</span>
                 </p>
                 <p className='description text-white md:ml-0 md:mr-0 ml-8 mr-8'>{homeData.text3}</p>
@@ -151,6 +300,9 @@ function Home({ homeData, setTextcount, textCount, setPlayStatus, playStatus }) 
                         <div className="text-center">
                             <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">HaqCheck</h3>
                             <p className="text-gray-600 dark:text-gray-300 mb-4">A multilingual fact-checking initiative to ensure information accuracy.</p>
+                            <Link className=' px-2 py-2 rounded-full shadow-xl dark:shadow-[#F2B616] dark:shadow-lg' to={"/focus-areas"}>
+                            <FontAwesomeIcon className='text-gray-600 dark:text-white transition-transform duration-300 hover:scale-125' icon={faArrowRight}/>
+                            </Link>
                         </div>
                        
                     </motion.div>
@@ -160,10 +312,16 @@ function Home({ homeData, setTextcount, textCount, setPlayStatus, playStatus }) 
                         className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 flex flex-col items-center justify-between h-60 hover:shadow-2xl transition-shadow duration-300"
                         variants={cardVariants}
                     >
-                        <FontAwesomeIcon icon={faDatabase} className="text-4xl text-[#F2B616]  mb-4" />
+                    
+                      <FontAwesomeIcon icon={faDatabase} className="text-4xl text-[#F2B616]  mb-4" />
+                    
+                        
                         <div className="text-center">
                             <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Data Lab</h3>
                             <p className="text-gray-600 dark:text-gray-300 mb-4">Providing insightful data analysis for informed decision-making.</p>
+                            <Link className=' px-2 py-2 rounded-full shadow-xl dark:shadow-[#F2B616] dark:shadow-lg' to={"/focus-areas"}>
+                            <FontAwesomeIcon className='text-gray-600 dark:text-white transition-transform duration-300 hover:scale-125' icon={faArrowRight}/>
+                            </Link>
                         </div>
                         
                     </motion.div>
@@ -177,6 +335,9 @@ function Home({ homeData, setTextcount, textCount, setPlayStatus, playStatus }) 
                         <div className="text-center">
                             <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Information Research</h3>
                             <p className="text-gray-600 dark:text-gray-300 mb-4">Conducting thorough research to support reliable information dissemination.</p>
+                            <Link className=' px-2 py-2 rounded-full shadow-xl dark:shadow-[#F2B616] dark:shadow-lg' to={"/focus-areas"}>
+                            <FontAwesomeIcon className='text-gray-600 dark:text-white transition-transform duration-300 hover:scale-125' icon={faArrowRight}/>
+                            </Link>
                         </div>
                        
                     </motion.div>
@@ -190,242 +351,238 @@ function Home({ homeData, setTextcount, textCount, setPlayStatus, playStatus }) 
                         <div className="text-center">
                             <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Training Center - Media</h3>
                             <p className="text-gray-600 dark:text-gray-300 mb-4">Offering training programs to enhance media literacy and skills.</p>
+                            <Link className=' px-2 py-2 rounded-full shadow-xl dark:shadow-[#F2B616]  dark:shadow-lg' to={"/focus-areas"}>
+                            <FontAwesomeIcon className='text-gray-600 dark:text-white transition-transform duration-300 hover:scale-125' icon={faArrowRight}/>
+                            </Link>
                         </div>
                        
                     </motion.div>
                 </div>
             </motion.div>
+            <LatestNews/>
             <motion.div
-            className="flex flex-col md:flex-row items-center md:items-start  shadow-lg rounded-lg p-6 md:p-8 gap-8 md:gap-12 "
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInVariants}
-           
-        >
-            {/* Image Section */}
-            <div className="flex-shrink-0">
-                <img
-                    src={africa}
-                    alt="About Us"
-                    className="w-full h-96 object-cover rounded-lg shadow-md"
-                />
-            </div>
+  className="flex flex-col md:flex-row items-center md:items-start  rounded-lg p-6 md:p-8 gap-8 md:gap-12"
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true }}
+  variants={fadeInVariants}
+>
+  {/* Image Section */}
+  <div className="w-full md:w-auto flex-shrink-0">
+    <img
+      src={africa}
+      alt="About Us"
+      className="w-full h-64 md:h-96 object-cover rounded-lg shadow-md"
+    />
+  </div>
 
-            <div className="flex-1 dark:bg-black text-white py-10 px-6 md:px-12">
-                {/* About Us Section */}
-                <div className="text-start mb-12 px-4 md:px-8 lg:px-12">
-        {/* Title Section */}
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 dark:text-white mb-6">
-            About Us
-        </h1>
+  
 
-          {/* Description Section */}
-          <p className="text-base md:text-lg lg:text-xl leading-relaxed text-gray-700 dark:text-gray-300">
-              Inform Africa analyzes disinformation to manage risks and upholds media integrity in Ethiopia and beyond. 
-              Its Disinformation Analysis Initiative leverages advanced technology for media monitoring and research, 
-              advocating for digital rights, literacy, and professional excellence.
+  {/* Content Section */}
+  <div className="flex-1 dark:bg-black text-white py-10 px-4 md:px-6 lg:px-12">
+    {/* About Us Section */}
+    <div className="text-start mb-12 px-2 md:px-4 lg:px-8">
+      {/* Title Section */}
+      <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 dark:text-white mb-6">
+        About Us
+      </h1>
+
+      {/* Description Section */}
+      <p className="text-base leading-relaxed text-gray-700 dark:text-gray-300">
+        Inform Africa analyzes disinformation to manage risks and upholds media integrity in Ethiopia and beyond.
+        Its Disinformation Analysis Initiative leverages advanced technology for media monitoring and research,
+        advocating for digital rights, literacy, and professional excellence.
+      </p>
+    </div>
+
+    {/* Tabs Section */}
+    <div className="flex flex-col md:flex-row text-start px-2 md:px-4 lg:px-8 gap-4 md:gap-8 mb-12">
+      {/* Tab for Core Mission */}
+      <p
+        className={`cursor-pointer py-2 px-4 rounded-lg transition-all duration-300 
+          ${activeTab === 'coreMission' ? 
+            'text-[#F2B616] border-1 border-[#F2B616] shadow-lg shadow-[#F2B616] hover:shadow-xl' : 
+            'text-gray-500 shadow-lg  border text-prima hover:border-[#F2B616] hover:text-[#F2B616] hover:shadow-md'}`}
+        onClick={() => handleTabClick('coreMission')}
+      >
+        Core Mission
+      </p>
+
+      {/* Tab for Capacity-Building Initiatives */}
+      <p
+        className={`cursor-pointer py-2 px-4 rounded-lg transition-all duration-300 
+          ${activeTab === 'capacityBuilding' ? 
+            'text-[#F2B616] border-1 border-[#F2B616] shadow-lg shadow-[#F2B616] hover:shadow-xl' : 
+            'text-gray-500 shadow-lg  border text-prima hover:border-[#F2B616] hover:text-[#F2B616] hover:shadow-md'}`}
+        onClick={() => handleTabClick('capacityBuilding')}
+      >
+        Capacity-Building Initiatives
+      </p>
+
+      {/* Tab for HaqCheck */}
+      <p
+        className={`cursor-pointer py-2 px-4 rounded-lg transition-all duration-300 
+          ${activeTab === 'haqCheck' ? 
+            'text-[#F2B616] border-1 border-[#F2B616] shadow-lg shadow-[#F2B616] hover:shadow-xl' : 
+            'text-gray-500 shadow-lg  border text-prima hover:border-[#F2B616] hover:text-[#F2B616] hover:shadow-md'}`}
+        onClick={() => handleTabClick('haqCheck')}
+      >
+        HaqCheck
+      </p>
+    </div>
+
+    {/* Tab Contents */}
+    <motion.div
+      className={`tab-contents ${activeTab === 'coreMission' ? 'block' : 'hidden'}`}
+      variants={slideInVariants}
+      initial="hidden"
+      animate={activeTab === 'coreMission' ? 'visible' : 'hidden'}
+    >
+      <p className="text-base leading-relaxed text-gray-700 dark:text-gray-300 mb-12 px-2 md:px-4 lg:px-8">
+        Inform Africa believes that its core mission and capability to carry out innovative projects, together with its motivated and experienced staff, makes it an ideal choice for partnership and collaboration.
+      </p>
+    </motion.div>
+
+    <motion.div
+      className={`tab-contents ${activeTab === 'capacityBuilding' ? 'block' : 'hidden'}`}
+      variants={slideInVariants}
+      initial="hidden"
+      animate={activeTab === 'capacityBuilding' ? 'visible' : 'hidden'}
+    >
+      <p className="text-base leading-relaxed text-gray-700 dark:text-gray-300 mb-12 px-2 md:px-4 lg:px-8">
+        Facilitating capacity-building initiatives in the African Continent to utilize modern media technologies in a safe and healthy media environment by managing media education and information disorder through professional and high-scale knowledge and tools.
+      </p>
+    </motion.div>
+
+    <motion.div
+      className={`tab-contents ${activeTab === 'haqCheck' ? 'block' : 'hidden'}`}
+      variants={slideInVariants}
+      initial="hidden"
+      animate={activeTab === 'haqCheck' ? 'visible' : 'hidden'}
+    >
+      <div className="flex flex-col md:flex-row ml-2 items-start rounded-lg p-4 md:p-6 gap-4 md:gap-8">
+        <div className="flex-1">
+          <h2 className="text-2xl font-semibold text-[#F2B616] mb-4">HaqCheck</h2>
+          <p className="text-md text-gray-800 dark:text-gray-300">
+            HaqCheck is a local and multilingual fact-checking initiative focused on ensuring information accuracy across various media platforms. Our goal is to enhance public trust in media through rigorous verification processes and transparent reporting.
           </p>
+          <div className='px-4 bg-[#F2B616] hover:bg-[#f6c849]  w-40 py-3 mt-5 rounded-md'>
+            <Link to={"/"}>
+            Learn more <FontAwesomeIcon className='ml-3' icon={faArrowRight}/>
+            </Link>
+          </div>
+        </div>
       </div>
+    </motion.div>
+  </div>
+</motion.div>
 
+        <OurPartners/>  
+   <MapSection/>
+    <Footer/>
 
-                {/* Tabs Section */}
-                <div className="flex text-start px-4 md:px-8 lg:px-12 flex-row gap-8 md:gap-12 mb-12">
-    {/* Tab for Core Mission */}
-                <p
-                    className={`cursor-pointer py-2 px-4 rounded-lg transition-all duration-300 
-                                ${activeTab === 'coreMission' ? 
-                                  'dark:text-white text-black  border-1 border-[#F2B616] shadow-lg shadow-[#F2B616] hover:shadow-lg' : 
-                                  'bg-transparent dark:text-gray-300 text-black border dark:border-gray-300  border-black hover:border-[#F2B616] hover:text-[#F2B616] hover:shadow-md'}`}
-                    onClick={() => handleTabClick('coreMission')}
-                >
-                    Core Mission
-                </p>
-
-                {/* Tab for Capacity-Building Initiatives */}
-                <p
-                    className={`cursor-pointer py-2 px-4 rounded-lg transition-all duration-300 
-                                ${activeTab === 'capacityBuilding' ? 
-                                 'dark:text-white text-black  border-1 border-[#F2B616] shadow-lg shadow-[#F2B616] hover:shadow-lg' : 
-                                  'bg-transparent dark:text-gray-300 text-black border dark:border-gray-300  border-black hover:border-[#F2B616] hover:text-[#F2B616] hover:shadow-md'}`}
-                    onClick={() => handleTabClick('capacityBuilding')}
-                >
-                    Capacity-Building Initiatives
-                </p>
-
-                {/* Tab for HaqCheck */}
-                <p
-                    className={`cursor-pointer py-2 px-4 rounded-lg transition-all duration-300 
-                                ${activeTab === 'haqCheck' ? 
-                                 'dark:text-white text-black  border-1 border-[#F2B616] shadow-lg shadow-[#F2B616] hover:shadow-lg' : 
-                                  'bg-transparent dark:text-gray-300 text-black border dark:border-gray-300  border-black hover:border-[#F2B616] hover:text-[#F2B616] hover:shadow-md'}`}
-                    onClick={() => handleTabClick('haqCheck')}
-                >
-                    HaqCheck
-                </p>
-            </div>
-
-                {/* Tab Contents */}
-                <motion.div
-                className={`tab-contents ${activeTab === 'coreMission' ? 'block' : 'hidden'}`}
-                variants={slideInVariants}
-                initial="hidden"
-                animate={activeTab === 'coreMission' ? 'visible' : 'hidden'}
-            >
-               <p className="text-base md:text-lg lg:text-xl leading-relaxed text-gray-700 dark:text-gray-300 mb-12 px-4 md:px-8 lg:px-12">
-                    Inform Africa believes that its core mission and capability to carry out innovative projects, together with its motivated and experienced staff, makes it an ideal choice for partnership and collaboration.
-                </p>
-            </motion.div>
-
-            <motion.div
-                className={`tab-contents ${activeTab === 'capacityBuilding' ? 'block' : 'hidden'}`}
-                variants={slideInVariants}
-                initial="hidden"
-                animate={activeTab === 'capacityBuilding' ? 'visible' : 'hidden'}
-            >
-                 <p className="text-base md:text-lg lg:text-xl leading-relaxed text-gray-700 dark:text-gray-300 mb-12 px-4 md:px-8 lg:px-12">
-                    Facilitating capacity-building initiatives in the African Continent to utilize modern media technologies in a safe and healthy media environment by managing media education and information disorder through professional and high-scale knowledge and tools.
-                </p>
-            </motion.div>
-
-            <motion.div
-                className={`tab-contents ${activeTab === 'haqCheck' ? 'block' : 'hidden'}`}
-                variants={slideInVariants}
-                initial="hidden"
-                animate={activeTab === 'haqCheck' ? 'visible' : 'hidden'}
-            >
-                <div className="md:flex-row ml-5 items-center md:items-start rounded-lg p-6 md:p-8 gap-8">
-                   
-                    <div className="flex-1">
-                        <h2 className="text-2xl   font-semibold text-[#F2B616] mb-4">HaqCheck</h2>
-                        <p className="text-md text-gray-800 dark:text-gray-300">
-                            HaqCheck is a local and multilingual fact-checking initiative focused on ensuring information accuracy across various media platforms. Our goal is to enhance public trust in media through rigorous verification processes and transparent reporting.
-                        </p>
-                            <div className="explore rounded-full w-48  mt-10 items-center ">
-                        <p className='text-black ml-5 mr-5'>Explore More</p>
-                        <div>
-                        <img src={arrow} className='h-14 w-14 rounded-full' alt="Explore More" />
-                    </div>
-                </div>
-                    </div>
-                </div>
-            </motion.div>
-            </div>
-            </motion.div>
-            <section className="py-16 px-6 md:px-12 bg-gray-100 dark:bg-gray-900">
-      <div className="container mx-auto">
-        <motion.div
-          className="flex flex-col md:flex-row items-center gap-8"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={newsVariants}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-        >
-          {/* Image Section */}
-         
-        </motion.div>
-      </div>
-    </section>
-<FooterSection/>
-            </div>   
+    </div>   
       
     );
 }
 
-const FooterSection = () => (
-    <footer className="bg-gray-900 pl-5 md:pl-20 pr-20 text-white py-12 mt-20"
-    style={{
-        backgroundImage: `url(${footerBg})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat', // Optional: Prevents the image from repeating
-      }}>
-    <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 px-4 md:px-0">
-      
-      {/* About Section */}
-        <div className="col-span-1">
-    <h3 className="text-xl font-semibold mb-4">About Inform Africa</h3>
-    <p className="text-gray-400">
-        FactCheck News is dedicated to providing accurate and reliable news by thoroughly fact-checking every story we publish. Our mission is to combat misinformation and ensure that our readers are informed with verified and trustworthy information. We strive to uphold the highest standards of journalism to support a well-informed public.
-    </p>
+
+const LatestNews = () => (
+    
+    <div className="w-80 md:max-w-7xl  md:w-full mb-28 mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+            Latest News
+        </h2>
+        <Slider {...settings}>
+            {newsArticles.map((article) => (
+                <div key={article.id} className="p-4">
+                    <motion.div
+                        className="flex flex-col md:flex-row items-center bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden"
+                        initial="hidden"
+                        animate="visible"
+                        variants={slideInVariants}
+                        transition={{ duration: 0.6, ease: "easeInOut" }}
+                    >
+                        <img
+                            src={article.image}
+                            alt={article.title}
+                            className="w-full  md:w-1/2 h-96 object-cover"
+                        />
+                        <div className="p-6 md:w-1/2">
+                            <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-2">
+                                {article.title}
+                            </h3>
+                            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                                {article.date}
+                            </p>
+                            <p className="text-gray-700 dark:text-gray-300 mb-4">
+                                {article.description}
+                            </p>
+                            <a
+                                href="#"
+                                className="text-[#F2B616] dark:text-[#F2B616] hover:text-[#dea508] dark:hover:text-[#dea508] font-semibold"
+                            >
+                                Read More &rarr;
+                            </a>
+                        </div>
+                    </motion.div>
+                </div>
+            ))}
+        </Slider>
     </div>
 
-
-      {/* Quick Links */}
-      <div className="col-span-1">
-        <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
-        <ul className="text-gray-400 space-y-2">
-          <li><a href="/about-us" className="hover:text-[#F2B616]">About Us</a></li>
-          <li><a href="/services" className="hover:text-[#F2B616]">Our Services</a></li>
-          <li><a href="/services" className="hover:text-[#F2B616]">Projects</a></li>
-          <li><a href="/contact-us" className="hover:text-[#F2B616]">Contact Us</a></li>
-        </ul>
-      </div>
-
-      {/* Contact Information */}
-      <div className="col-span-1">
-        <h3 className="text-xl font-semibold mb-4">Contact Us</h3>
-        <ul className="text-gray-400 space-y-2">
-          <li className="flex items-center">
-            <FontAwesomeIcon icon={faMapMarkerAlt} className="text-[#F2B616] mr-3" />
-            Dilla, Ethiopia
-          </li>
-          <li className="flex items-center">
-            <FontAwesomeIcon icon={faPhone} className="text-[#F2B616] mr-3" />
-            +251 95 223 5222
-          </li>
-          <li className="flex items-center">
-            <FontAwesomeIcon icon={faEnvelope} className="text-[#F2B616] mr-3" />
-            https://t.me/Degi2121
-          </li>
-        </ul>
-      </div>
-
-      {/* Newsletter Signup */}
-      <div className="col-span-1">
-        <h3 className="text-xl font-semibold mb-4">Get in touch with us</h3>
-        <p className="text-gray-400 mb-4">Get the latest news and updates on new post.</p>
-        <form className="flex flex-col">
-          <input
-            type="email"
-            placeholder="Enter your email"
-            className="p-2 rounded mb-4 text-gray-900"
-          />
-          <button className="bg-[#F2B616] text-black py-2 px-4 rounded hover:bg-[#fad15f] transition-colors">
-           <Link to={"https://t.me/Degi2121"}> Connect</Link>
-          </button>
-        </form>
-      </div>
-    </div>
-
-    {/* Bottom Section */}
-    <div className="container mx-auto mt-10 border-t border-gray-700 pt-6">
-      <div className="flex flex-col md:flex-row justify-between items-center">
-        
-        {/* Social Media Links */}
-        <div className="mb-4 md:mb-0">
-          <a href="#" className="text-[#F2B616] mr-4 hover:text-white">
-            <FontAwesomeIcon icon={faFacebookF} />
-          </a>
-          <a href="#" className="text-[#F2B616] mr-4 hover:text-white">
-            <FontAwesomeIcon icon={faTwitter} />
-          </a>
-          <a href="#" className="text-[#F2B616] mr-4 hover:text-white">
-            <FontAwesomeIcon icon={faLinkedinIn} />
-          </a>
-          <a href="#" className="text-[#F2B616] hover:text-white">
-            <FontAwesomeIcon icon={faInstagram} />
-          </a>
-        </div>
-
-        {/* Copyright Notice */}
-        <p className="text-gray-400 text-sm">
-          &copy; {new Date().getFullYear()} © 2024. Inform Africa. All Rights Reserved.
-        </p>
-      </div>
-    </div>
-  </footer>
   );
+
+
+  
+const OurPartners = () => (
+    
+  <div className="container mx-auto mt-20 mb-40 py-20 px-4 overflow-hidden">
+  <h1 className="text-4xl font-bold text-center mb-4 text-gray-800 dark:text-white">Our Partners</h1>
+  <p className='text-gray-600 dark:text-gray-300 mb-12 text-center'>
+    We collaborate with trusted organizations to uphold the truth in journalism.
+  </p>
+  <div className="relative overflow-hidden">
+    <div className="slider flex items-center">
+      <div className="slide-track flex gap-8">
+        {partnersData.concat(partnersData).map((partner, index) => (
+          <motion.div
+            key={index}
+            className="slide rounded-lg flex items-start justify-center px-28 ml-28 hover:shadow-2xl transition-shadow duration-300"
+            whileTap={{ scale: 0.95 }}
+          >
+            <Link to={partner.link} className='flex flex-row items-center text-center'>
+              <img
+                src={partner.logo}
+                alt={`${partner.name} Logo`}
+                className="w-full h-20 rounded-full object-contain mb-2"
+              />
+              <p className="text-lg md:text-xl ml-10 font-semibold text-gray-800 dark:text-white">{partner.name}</p>
+            </Link>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
+);
+
+
+const MapSection = () =>(
+  <div style={{ height: '300px', marginLeft:"50px",paddingRight:"100px", width: '100%' }}> {/* Adjusted height */}
+  <MapContainer center={position} zoom={15} style={{ height: '100%', width: '100%' }}>
+    <TileLayer
+      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    />
+    <Marker position={position}>
+      <Popup>Gabon St., Meskel Flower, Woreda 03, Kirkos Sub City, Addis Ababa, Ethiopia</Popup>
+    </Marker>
+  </MapContainer>
+</div>
+
+);
+
+
 
 export default Home;

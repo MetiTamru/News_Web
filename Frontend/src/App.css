@@ -2,12 +2,13 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box; /* Added for consistent box sizing */
+  box-sizing: border-box; 
+  font: Poppins;
   background-color: transparent; 
 }
 
 body {
-  font-family: Arial, sans-serif; /* Added for a consistent font across the site */
+  font-family: Poppins; /* Added for a consistent font across the site */
 }
 
 .navbar {
@@ -29,6 +30,7 @@ body {
   color: white;
   text-decoration: none;
   padding: 0.5rem 1rem;
+  
 }
 
 .navbar a:hover {

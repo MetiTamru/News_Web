@@ -10,8 +10,6 @@
 .explore{
   display: flex;
   align-items: center;
-
-  
   cursor: pointer;
   background: wheat;
   color: black;
@@ -69,3 +67,29 @@
   background-size: cover;
   background-position: center;
 }
+
+/* Tailwind CSS Styles */
+
+.slider {
+  overflow: hidden;
+  position: relative;
+}
+
+.slide-track {
+  display: flex;
+  gap: 1rem;
+  white-space: nowrap;
+  animation: scroll 40s linear infinite;
+}
+
+.slide {
+  min-width: 200px;
+  max-width: 250px;
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* You can add this CSS to your global styles or as inline styles */

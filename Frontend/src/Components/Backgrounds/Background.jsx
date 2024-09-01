@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import bg1 from '../../assets/bgp6.png';
 import bg2 from '../../assets/bg3.jpg';
-import bg3 from '../../assets/bgp13.png';
+import bg3 from '../../assets/backpic.jpeg';
 import bg4 from '../../assets/bgp10.png';
 import play from '../../assets/play_icon.png';
 import pause from '../../assets/pause_icon.png';
@@ -27,8 +27,8 @@ function Background() {
 
 
   return (
-    <>
-      <Navbar />
+    <div className='w-full h-full overflow-hidden'>
+      
       <div className="relative z-10 ">
         <Home
           setPlayStatus={setPlayStatus}
@@ -48,7 +48,7 @@ function Background() {
       />
 
      
-    </>
+    </div>
   );
 }
 
