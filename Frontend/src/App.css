@@ -107,3 +107,24 @@ ul.submenu {
     width: 100%; /* Full width dropdown */
   }
 }
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  opacity: 1;
+  transform: translateY(0);
+  animation: fadeIn 1s ease-out forwards;
+}
+.underline-primary {
+  text-decoration: underline;
+  text-decoration-color: #F2B616; margin-top: 5px;
+}
+

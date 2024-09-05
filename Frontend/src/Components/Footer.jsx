@@ -14,7 +14,7 @@ function Footer() {
           backgroundImage: `url(${footerBg})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat', // Optional: Prevents the image from repeating
+          backgroundRepeat: 'no-repeat', 
         }}>
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 px-4 md:px-0">
         
@@ -22,6 +22,7 @@ function Footer() {
           <div className="col-span-1">
       <h3 className="text-xl font-semibold mb-4">About Inform Africa</h3>
       <p className="text-gray-400">
+      
       Inform Africa believes that its core mission and capability to carry out innovative projects, together with its motivated and experienced staff, makes it an ideal choice for partnership and collaboration.
       </p>
       <div className="mb-4 mt-8 md:mb-0">
@@ -54,8 +55,9 @@ function Footer() {
           <ul className="text-gray-400 space-y-2">
             <li className="flex items-center">
               <FontAwesomeIcon icon={faMapMarkerAlt} className="text-[#F2B616] mr-3" />
-              Jambo Real Estate HQ Building, 6th floor
-              Office number 601
+                
+              Jambo Real Estate HQ Building, 8th floor
+              Office number 801
               Gabon St. near Meskel flower
               Woreda 03, Kirkos Sub city
               Addis Ababa, Ethiopia.

@@ -114,12 +114,12 @@ const Navbar = () => {
         {/* Sidebar */}
         <div
           ref={sidebarRef}
-          className={`fixed top-0 right-0 w-64 h-screen text-black   dark:bg-black lg:dark:bg-transparent transition-transform duration-300 ease-in-out transform ${isOpen ? 'translate-x-0' : 'translate-x-full'} ${sidebarBg} ${isOpen ? '' : 'hidden'} lg:relative lg:translate-x-0 lg:w-auto lg:h-auto lg:flex lg:items-center lg:space-x-6 lg:bg-transparent lg:shadow-none`}
+          className={`fixed top-0 right-0 pl-5 w-64 h-screen text-black   dark:bg-black lg:dark:bg-transparent transition-transform duration-300 ease-in-out transform ${isOpen ? 'translate-x-0' : 'translate-x-full'} ${sidebarBg} ${isOpen ? '' : 'hidden'} lg:relative lg:translate-x-0 lg:w-auto lg:h-auto lg:flex lg:items-center lg:space-x-6 lg:bg-transparent lg:shadow-none`}
         >
           {/* Close Button for Sidebar */}
           <button
             onClick={toggleMenu}
-            className="absolute top-4 pt-3 left-4 lg:hidden text-white"
+            className="absolute top-4 pt-3 left-6 lg:hidden text-white"
           >
             <FaTimes className="text-2xl dark:text-white " />
           </button>
@@ -166,28 +166,21 @@ const Navbar = () => {
               >
                 <li>
                   <Link
-                    to="/about-us/team"
-                    className="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                    to="/about/team"
+                    className="block px-4 mt-10 lg:mt-0 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
                   >
-                    Our Team
+                    Meet The Team
                   </Link>
                 </li>
                 <li>
                   <Link
-                    to="/about-us/history"
-                    className="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                    to="/about/board-team"
+                    className="block px-4 py-2 lg:mt-0  sm:mt-5 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
                   >
-                    History
+                    Board Members 
                   </Link>
                 </li>
-                <li>
-                  <Link
-                    to="/about-us/mission"
-                    className="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
-                  >
-                    Mission & Vision
-                  </Link>
-                </li>
+               
               </ul>
             </li>
 
@@ -227,7 +220,7 @@ const Navbar = () => {
             <li>
               <Link
                 to="/contact"
-                className={`nav-link ${linkColor} ${location.pathname === '/contact' ? 'active' : ''}`}
+                className={`nav-link lg:hidden ${linkColor} ${location.pathname === '/contact' ? 'active' : ''}`}
               >
                 Contact
               </Link>
@@ -236,6 +229,7 @@ const Navbar = () => {
 
           {/* Dark Mode Toggle */}
           <div className="absolute lg:pr-10 lg:pl-20 lg:static lg:bottom-auto lg:right-auto bottom-4 left-4 flex items-center">
+            <Link className='bg-primary hidden lg:block rounded-full py-2 px-4 mr-3'>Contact us</Link>
             <button
               onClick={handleToggle}
               className="relative flex items-center justify-between w-16 h-8 rounded-full bg-gray-300 dark:bg-gray-700 cursor-pointer transition-colors duration-300 ease-in-out"

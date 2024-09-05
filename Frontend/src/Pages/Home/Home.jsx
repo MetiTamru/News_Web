@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import africa from '../../assets/africa.jpeg'
 import newsBg from "../../assets/africa.jpeg"
 import cipesa from "../../assets/cipesa1.png"
-import fojo from "../../assets/fojo.jpeg"
+import fojo from "../../assets/ims.jpg"
 import bbc from "../../assets/bbc.png"
 
 import adiszaeybe from "../../assets/adiszeybe.jfif"
@@ -110,58 +110,58 @@ const partnersData = [
   {
     name: "Cipesa",
     logo: cipesa,
-    link: "/about"
+    link: "/activities/cipesa-inform-africa"
   },
   {
     name: "Arfica Check",
     logo: africachek,
-    link: "/about"
+    link: "/activities"
   },
   {
     name: "Adis Zeybe",
     logo: adiszaeybe,
-    link: "/about"
+    link: "/activities"
 
   },
   {
     name: "Oslomet",
     logo: oslomet,
-    link: "/about"
+    link: "/activities"
 
   },
   {
     name: "Meedan",
     logo: meedan,
-    link: "/about"
+    link: "/activities/meedan-inform-africa"
 
   },
   {
     name: "Unesco",
     logo: unesco,
-    link: "/about"
+    link: "/activities/unesco-inform-africa"
 
   },
   {
     name: "Osiea",
     logo: OSIEA,
-    link: "/about"
+    link: "/activities/osiea-inform-africa"
 
   },
   {
     name: "Free Press Unlimited",
     logo: freeunlimited,
-    link: "/about"
+    link: "/activities/free-press-unlimited-inform-africa"
 
   },
   {
     name: "BBC",
     logo: bbc,
-    link: "/about"
+    link: "/activities/bbc-inform-africa"
   },
   {
-    name: "Fojo",
+    name: "IMS",
     logo: fojo,
-    link: "/about"
+    link: "/activities/ims-inform-africa"
 
   },
 ];
@@ -250,7 +250,7 @@ function Home({ homeData, setTextcount, textCount, setPlayStatus, playStatus }) 
       <div className='home relative h-full flex flex-col justify-center items-center md:items-start overflow-hidden'>
 
             <div className={`text-content md:ml-32 text-center flex flex-col gap-7 md:text-start ${playStatus ? 'home-texts' : 'paused'}`}>
-                <p className='home-text md:pt-28 text-4xl md:text-6xl md:mt-10 '>
+                <p className='home-text lg:pt-28 text-4xl md:text-6xl md:mt-10 '>
                     {homeData.text1} <span className='text-[#F2B616] text-center'>{homeData.text2}</span>
                 </p>
                 <p className='description text-white md:ml-0 md:mr-0 ml-8 mr-8'>{homeData.text3}</p>
@@ -361,14 +361,14 @@ function Home({ homeData, setTextcount, textCount, setPlayStatus, playStatus }) 
             </motion.div>
             <LatestNews/>
             <motion.div
-  className="flex flex-col md:flex-row items-center md:items-start  rounded-lg p-6 md:p-8 gap-8 md:gap-12"
+  className="flex flex-col lg:flex-row items-center md:items-start  rounded-lg p-6 md:p-8 gap-8 md:gap-12"
   initial="hidden"
   whileInView="visible"
   viewport={{ once: true }}
   variants={fadeInVariants}
 >
   {/* Image Section */}
-  <div className="w-full md:w-auto flex-shrink-0">
+  <div className="w-full lg:w-auto flex-shrink-0">
     <img
       src={africa}
       alt="About Us"
@@ -383,7 +383,7 @@ function Home({ homeData, setTextcount, textCount, setPlayStatus, playStatus }) 
     {/* About Us Section */}
     <div className="text-start mb-12 px-2 md:px-4 lg:px-8">
       {/* Title Section */}
-      <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 dark:text-white mb-6">
+      <h1 className="text-3xl  font-bold text-gray-900 dark:text-white mb-6">
         About Us
       </h1>
 
@@ -401,8 +401,8 @@ function Home({ homeData, setTextcount, textCount, setPlayStatus, playStatus }) 
       <p
         className={`cursor-pointer py-2 px-4 rounded-lg transition-all duration-300 
           ${activeTab === 'coreMission' ? 
-            'text-[#F2B616] border-1 border-[#F2B616] shadow-lg shadow-[#F2B616] hover:shadow-xl' : 
-            'text-gray-500 shadow-lg  border text-prima hover:border-[#F2B616] hover:text-[#F2B616] hover:shadow-md'}`}
+            'text-primary border-1 border-primary shadow-lg shadow-primary hover:shadow-xl' : 
+                  'text-gray-500 border border-gray-200 hover:border-primary hover:text-primary hover:shadow-md'}`}
         onClick={() => handleTabClick('coreMission')}
       >
         Core Mission
@@ -412,8 +412,8 @@ function Home({ homeData, setTextcount, textCount, setPlayStatus, playStatus }) 
       <p
         className={`cursor-pointer py-2 px-4 rounded-lg transition-all duration-300 
           ${activeTab === 'capacityBuilding' ? 
-            'text-[#F2B616] border-1 border-[#F2B616] shadow-lg shadow-[#F2B616] hover:shadow-xl' : 
-            'text-gray-500 shadow-lg  border text-prima hover:border-[#F2B616] hover:text-[#F2B616] hover:shadow-md'}`}
+            'text-primary border-1 border-primary shadow-lg shadow-primary hover:shadow-xl' : 
+            'text-gray-500 border border-gray-200 hover:border-primary hover:text-primary hover:shadow-md'}`}
         onClick={() => handleTabClick('capacityBuilding')}
       >
         Capacity-Building Initiatives
@@ -423,8 +423,8 @@ function Home({ homeData, setTextcount, textCount, setPlayStatus, playStatus }) 
       <p
         className={`cursor-pointer py-2 px-4 rounded-lg transition-all duration-300 
           ${activeTab === 'haqCheck' ? 
-            'text-[#F2B616] border-1 border-[#F2B616] shadow-lg shadow-[#F2B616] hover:shadow-xl' : 
-            'text-gray-500 shadow-lg  border text-prima hover:border-[#F2B616] hover:text-[#F2B616] hover:shadow-md'}`}
+            'text-primary border-1 border-primary shadow-lg shadow-primary hover:shadow-xl' : 
+            'text-gray-500 border border-gray-200 hover:border-primary hover:text-primary hover:shadow-md'}`}
         onClick={() => handleTabClick('haqCheck')}
       >
         HaqCheck
@@ -569,7 +569,7 @@ const OurPartners = () => (
 
 
 const MapSection = () =>(
-  <div style={{ height: '300px', marginLeft:"50px",paddingRight:"100px", width: '100%' }}> {/* Adjusted height */}
+  <div className='pr-14 md:pr-20' style={{ height: '300px', marginLeft:"50px", width: '100%' }}> {/* Adjusted height */}
   <MapContainer center={position} zoom={15} style={{ height: '100%', width: '100%' }}>
     <TileLayer
       url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
